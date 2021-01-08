@@ -1,27 +1,72 @@
 var connection = require("./connection.js");
 
-// Object Relational Mapper (ORM)
+function createQmarks(num) {
+  var arr = [];
+  for(var i = 0; i < num; i++) {
+    arr.push("?");
+  }   
+  return arr.toString();   
+}
 
-// The ?? signs are for swapping out table or column names
-// The ? signs are for swapping out other values
-// These help avoid SQL injection
-// https://en.wikipedia.org/wiki/SQL_injection
+function translateSql(obj) {
+    var arr = [];
+    for (var key in ob) {
+        var value = ob[key];
+        if (Object.hasOwnProperty.call(ob, key)) {
+            if(typeof value === "string" && value.indexOf(" ") >= 0) {
+                value = "'" + value + "'";
+            }
+            arr.push(key + "=" + value)
+        }
+    }
+    return arr.toString();
+}
 
+var orm = {
+  selectAll: function(tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    connection.query(queryString, function(err, res) {
+      if (err) throw err;
+      console.log(res);
+      cb(res);
+    });
+  },
+  insertOne: function(table,cols,vals,cb) {
+      var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") " + "VALUES (" + createQmarks(vals.length) + ") ";
 
-//Console log all the party names.
-//Console log all the client names.
-//Console log all the parties that have a party-type of grown-up.
-//Console log all the clients and their parties.
+      console.log(queryString);
 
-// var orm = {
-//   selectAll: function(tableInput, colToSearch) {
-//     var queryString = "SELECT ??? FROM ??";
-//     connection.query(queryString, [tableInput, colToSearch], function(err, result) {
-//       if (err) throw err;
-//       console.log(result);
-//     });
-//   },
+      connection.query(queryString, function(err, res) {
+        if (err) throw err;
+        console.log(res);
+        cb(res);
+      });
+    },
 
+    updateOne: function(table, objColVals, condition, cb) {
+        var queryString = "UPDATE " + table + " SET " + translateSql(objColVals) + " WHERE " + condition;
+
+        console.log(queryString);
+
+      connection.query(queryString, function(err, res) {
+        if (err) throw err;
+        console.log(res);
+        cb(res);
+      });
+  },
+  deleteOne: function(table,condition,cb) {
+      var queryString = "DELETE FROM " + table + " WHERE " + condition;
+
+      console.log(queryString);
+
+      connection.query(queryString, function(err, res) {
+        if (err) throw err;
+        console.log(res);
+        cb(res);
+      });
+
+  }
+};
 //   selectWhere: function(tableInput, colToSearch, valOfCol) {
 //     var queryString = "SELECT * FROM ?? WHERE ?? = ?";
 //     connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
