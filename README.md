@@ -12,13 +12,13 @@
     
 ## Description
     
-For anyone that wants to track burgers by adding them to a list, marking that they've been eaten and seeing what they've eaten, plus deleting. 
+An app for serious burger eaters. Also, use of MySQL, Node, Express, Handlebars and a homemade ORM deployed on Heroku.
 
 ![burger-logger](./public/assets/img/burger.png)
     
 ## Installation
     
-- Navigate to "https://note-taker-pbm.herokuapp.com/" 
+- Navigate to "https://glacial-eyrie-30428.herokuapp.com/" 
 - Voila!
     
 ## Usage
