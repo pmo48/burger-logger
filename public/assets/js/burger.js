@@ -1,3 +1,5 @@
+// javascript used to handle the data additions, updates and deletions when users interact with the view. 
+
 $(function () {
     $(".create-form").on("submit",function(event) {
         event.preventDefault();

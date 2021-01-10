@@ -1,3 +1,5 @@
+// Model file that uses the orm to pass arguments and callback functions
+
 var orm = require("../config/orm");
 
 var burger = {
@@ -22,5 +24,7 @@ var burger = {
     });
   }
 };
+
+// exports to use in controller file
 
 module.exports = burger;

@@ -1,5 +1,4 @@
-// homenade ORM from database 
-
+// homemade ORM from database 
 
 var connection = require("./connection.js");
 
