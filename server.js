@@ -1,7 +1,9 @@
+// required node modules for app including express, handlebars and dotenv for credential storing. 
 var express = require("express");
 var exphbs = require("express-handlebars");
 require('dotenv').config()
 
+// Other variables and functions used to basically turn the server on.
 
 var PORT = process.env.PORT || 8080;
 

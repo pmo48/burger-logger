@@ -1,3 +1,5 @@
+// file used to connect data model to variious files including views using handlebars. It handles the API requests including getting the data, updating the data and deleting the data
+
 var express = require("express");
 var burger = require("../models/burger.js");
 

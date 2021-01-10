@@ -1,4 +1,9 @@
+// homenade ORM from database 
+
+
 var connection = require("./connection.js");
+
+// helper function 
 
 function createQmarks(num) {
   var arr = [];
@@ -7,6 +12,8 @@ function createQmarks(num) {
   }   
   return arr.toString();   
 }
+
+// helper function 
 
 function translateSql(ob) {
     var arr = [];
@@ -21,6 +28,8 @@ function translateSql(ob) {
     }
     return arr.toString();
 }
+
+// ORM functions - select all, inserting, updating and deleting (CRUD)
 
 var orm = {
   selectAll: function(tableInput, cb) {
@@ -72,5 +81,7 @@ var orm = {
 
   }
 };
+
+// exports ORM to use in model
 
 module.exports = orm;

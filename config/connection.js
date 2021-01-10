@@ -1,4 +1,8 @@
+// connection file for mysql
+
 var mysql = require("mysql");
+
+// if it's run on heroku using JAWS, use that connection otherwise use local
 
 if (process.env.JAWSDB_URL) {
   var connection = mysql.createConnection(process.env.JAWSDB_URL)
@@ -12,6 +16,7 @@ if (process.env.JAWSDB_URL) {
   });
 }
 
+// logs errors/success for connection
 
 connection.connect(function(err) {
   if (err) {
@@ -20,5 +25,7 @@ connection.connect(function(err) {
   }
   console.log("connected as id " + connection.threadId);
 });
+
+// exports connection to use in ORM
 
 module.exports = connection;

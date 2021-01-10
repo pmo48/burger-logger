@@ -31,7 +31,7 @@ For anyone that wants to track burgers by adding them to a list, marking that th
 ## Credits
 
 - Trilogy app "Cat App"
-- https://www.youtube.com/user/daventertainmentdj
+- https://www.youtube.com/user/daventertainmentdj - Great tutorial! 
     
 ## License
 
