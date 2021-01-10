@@ -36,9 +36,6 @@ $(function () {
         event.preventDefault();
         
         var id = $(this).data("id");
-        var devouredState = {
-            devoured: 1
-        };
 
         $.ajax({
             type: "DELETE",

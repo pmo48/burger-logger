@@ -8,7 +8,7 @@ function createQmarks(num) {
   return arr.toString();   
 }
 
-function translateSql(obj) {
+function translateSql(ob) {
     var arr = [];
     for (var key in ob) {
         var value = ob[key];
@@ -25,10 +25,11 @@ function translateSql(obj) {
 var orm = {
   selectAll: function(tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, res) {
-      if (err) throw err;
-      console.log(res);
-      cb(res);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
     });
   },
   insertOne: function(table,cols,vals,cb) {
@@ -36,7 +37,7 @@ var orm = {
 
       console.log(queryString);
 
-      connection.query(queryString, function(err, res) {
+      connection.query(queryString, vals, function(err, res) {
         if (err) throw err;
         console.log(res);
         cb(res);
@@ -49,8 +50,10 @@ var orm = {
         console.log(queryString);
 
       connection.query(queryString, function(err, res) {
-        if (err) throw err;
-        console.log(res);
+        if (err) {
+          throw err;
+        }
+  
         cb(res);
       });
   },
@@ -60,41 +63,14 @@ var orm = {
       console.log(queryString);
 
       connection.query(queryString, function(err, res) {
-        if (err) throw err;
-        console.log(res);
+        if (err) {
+          throw err;
+        }
+  
         cb(res);
       });
 
   }
 };
-//   selectWhere: function(tableInput, colToSearch, valOfCol) {
-//     var queryString = "SELECT * FROM ?? WHERE ?? = ?";
-//     connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
-//       if (err) throw err;
-//       console.log(result);
-//     });
-//   },
-//   selectAndOrder: function(whatToSelect, table, orderCol) {
-//     var queryString = "SELECT ?? FROM ?? ORDER BY ?? DESC";
-//     console.log(queryString);
-//     connection.query(queryString, [whatToSelect, table, orderCol], function(err, result) {
-//       if (err) throw err;
-//       console.log(result);
-//     });
-//   },
-//   findWhoHasMost: function(tableOneCol, tableTwoForeignKey, tableOne, tableTwo) {
-//     var queryString =
-//       "SELECT ?? FROM ?? LEFT JOIN ?? ON ??.??= ??.id GROUP BY ?? ORDER BY count DESC LIMIT 1";
 
-//     connection.query(
-//       queryString,
-//       [tableOneCol, tableOneCol, tableOne, tableTwo, tableTwo, tableTwoForeignKey, tableOne, tableOneCol],
-//       function(err, result) {
-//         if (err) throw err;
-//         console.log(result);
-//       }
-//     );
-//   }
-// };
-
-// module.exports = orm;
+module.exports = orm;
